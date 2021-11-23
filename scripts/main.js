@@ -32,16 +32,16 @@ const increase = (li, item) => {
   document.querySelector(".num-items").innerText++
   item.amount++
   li.querySelector("p").innerText = `${item.amount}x ${item.name}`
-  let inCart = null
-  for (let needle of cart) {
-    if (item.name == needle.name) {
-      inCart = needle;
-      break;
-    }
-  }
-  if (inCart) {
-    inCart.amount++
-  }
+  // let inCart = null
+  // for (let needle of cart) {
+  //   if (item.name == needle.name) {
+  //     inCart = needle;
+  //     break;
+  //   }
+  // }
+  // if (inCart) {
+  //   inCart.amount++
+  // }
  
   console.log(item)
   console.log(cart)
@@ -77,18 +77,18 @@ const decrease = (li, item) => {
     li.remove()
   } else {
     li.querySelector("p").innerText = `${item.amount}x ${item.name}`
-    let inCart = null
-    for (let needle of cart) {
-      if (item.name == needle.name) {
-        inCart = needle;
-        break;
-      }
-    }
-    if (inCart) {
-      console.log(item)
-      console.log(cart)
-      inCart.amount--
-    }
+    // let inCart = null
+    // for (let needle of cart) {
+    //   if (item.name == needle.name) {
+    //     inCart = needle;
+    //     break;
+    //   }
+    // }
+    // if (inCart) {
+    //   console.log(item)
+    //   console.log(cart)
+    //   inCart.amount--
+    // }
   }
   saveCart()
 }
@@ -120,6 +120,7 @@ const renderCart = () => {
   for (let item of cart) {
     const li = createCartItem(item)
     cartContainer.append(li)
+    console.log(li)
   }
 }
 
@@ -161,10 +162,25 @@ const renderProductList = () => {
   numItems.innerText = getCartAmount()
 }
 
-const renderNumItems = () => {
+const renderNumItems = (product) => {
+  const cartContainer = document.querySelector(".cart")
   const numItems = document.querySelector(".num-items")
   numItems.classList.add("active")
   numItems.innerText = getCartAmount()
+  let inCart = null
+  cartContainer.innerHTML = ""
+  renderCart()
+  // for (let needle of cart) {
+  //   if (product.name == needle.name) {
+  //     inCart = needle;
+  //     const li = createCartItem(needle)
+  //     // li.querySelector("p").innerText = `${needle.amount}x ${needle.name}`
+  //     // cartContainer.append(li)
+  //     console.error(li)
+  //     console.error(needle.name)
+  //     break;
+  //   }
+  // }
 }
 
 addToCart = (product) => {
@@ -190,7 +206,7 @@ addToCart = (product) => {
   }
 
   saveCart()
-  renderNumItems()
+  renderNumItems(product)
 }
 
 // const cartHandler = () => {
