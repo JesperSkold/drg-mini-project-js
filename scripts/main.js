@@ -31,17 +31,17 @@ const setupInitialState = () => {
 const increase = (li, item) => {
   document.querySelector(".num-items").innerText++
   item.amount++
-  li.querySelector("p").innerText = `${item.amount}x ${item.name}`
-  // let inCart = null
-  // for (let needle of cart) {
-  //   if (item.name == needle.name) {
-  //     inCart = needle;
-  //     break;
-  //   }
-  // }
-  // if (inCart) {
-  //   inCart.amount++
-  // }
+  li.querySelector("span").innerText = `${item.amount}`
+  let inCart = null
+  for (let needle of cart) {
+    if (item.name == needle.name) {
+      inCart = needle;
+      break;
+    }
+  }
+  if (inCart) {
+    inCart.amount++
+  }
  
   console.log(item)
   console.log(cart)
@@ -76,19 +76,17 @@ const decrease = (li, item) => {
     cart = cart.filter(i => i.name != item.name)
     li.remove()
   } else {
-    li.querySelector("p").innerText = `${item.amount}x ${item.name}`
-    // let inCart = null
-    // for (let needle of cart) {
-    //   if (item.name == needle.name) {
-    //     inCart = needle;
-    //     break;
-    //   }
-    // }
-    // if (inCart) {
-    //   console.log(item)
-    //   console.log(cart)
-    //   inCart.amount--
-    // }
+    li.querySelector("span").innerText = `${item.amount}`
+    let inCart = null
+    for (let needle of cart) {
+      if (item.name == needle.name) {
+        inCart = needle;
+        break;
+      }
+    }
+    if (inCart) {
+      inCart.amount--
+    }
   }
   saveCart()
 }
@@ -97,9 +95,10 @@ const createCartItem = (item) => {
   const li = document.createElement("li")
   console.log(item)
   li.innerHTML = `
-  <p>${item.amount}x ${item.name}</p>
+  <p>${item.name}</p>
   <div class="controls">
   <button class="decrease">-</button>
+  <span>${item.amount}</span>
   <button class="increase">+</button>
   </div>
   `
@@ -183,7 +182,7 @@ const renderNumItems = (product) => {
   // }
 }
 
-addToCart = (product) => {
+const addToCart = (product) => {
   // let inCart = cart.find(item => item.name == product.name)
   let inCart = null
   console.log(product)
@@ -207,6 +206,23 @@ addToCart = (product) => {
 
   saveCart()
   renderNumItems(product)
+}
+
+const cartView = () => {
+  const closeView = document.querySelector(".close-view")
+  const openView = document.querySelector(".open-view")
+  const cartView = document.querySelector(".cart")
+  openView.style.display = "none"
+  closeView.addEventListener("click", () => {
+    cartView.style.display="none"
+    closeView.style.display="none"
+    openView.style.display = "flex"
+  })
+  openView.addEventListener("click", () => {
+    cartView.style.display="block"
+    closeView.style.display="flex"
+    openView.style.display = "none"
+  })
 }
 
 // const cartHandler = () => {
@@ -351,6 +367,7 @@ const main = () => {
   renderProductList()
   mapper()
   renderArticles()
+  cartView()
 }
 main()
 

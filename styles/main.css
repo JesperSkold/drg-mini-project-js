@@ -141,6 +141,12 @@ footer ul li {
 .cart {
   padding: 0;
 }
+
+.cart span {
+  color: black;
+  background-color: white;
+  padding: 0.2rem .5rem;
+}
 .cart-view {
   position: fixed;
   color: white;
@@ -149,22 +155,29 @@ footer ul li {
 }
 
 .cart li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 2rem .5rem;
-  text-align: center;
 }
 
 .num-items {
   text-align: center;
+  margin: 1rem;
 }
 
+.total {
+  text-align: center;
+}
 .controls button{
-  padding: .5rem;
-  margin: .5rem;
+  padding: 0.2rem .5rem;
 }
 
 .cart li p{
-  border-bottom: 1px white solid;
   text-align: center;
+  width: 10rem;
+  border-bottom: 1px white solid;
+  margin-right: .5rem;
   list-style: none;
 
 }
@@ -174,12 +187,15 @@ footer ul li {
 }
 
 .close-view {
-  margin-left: 95%;
+  display: flex;
+  justify-content: flex-end;
   cursor: pointer;
   color: white;
 }
 
 .open-view {
+  display: flex;
+  justify-content: flex-end;
   cursor: pointer;
   color: white;
 }
