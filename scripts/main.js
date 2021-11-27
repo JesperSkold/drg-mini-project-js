@@ -1,13 +1,21 @@
 let cart;
-let productList
+let totalSum;
+let productList;
 
 const saveCart = () => {
   const cartString = JSON.stringify(cart)
   localStorage.setItem("cart", cartString)
+  localStorage.setItem("total", totalSum)
 }
 
 const loadCart = () => {
+  const savedTotalSum = localStorage.getItem("total")
   const savedCart = localStorage.getItem("cart")
+  if (savedTotalSum) {
+    totalSum = savedTotalSum
+  }else{
+    totalSum = 0
+  }
   if (savedCart) {
     cart = JSON.parse(savedCart)
   } else {
@@ -42,10 +50,7 @@ const increase = (li, item) => {
   if (inCart) {
     inCart.amount++
   }
- 
-  console.log(item)
-  console.log(cart)
-
+  document.querySelector(".total").innerText = getCartTotal()
   saveCart()
   // newFunc(li, item)---------
 }
@@ -88,6 +93,7 @@ const decrease = (li, item) => {
       inCart.amount--
     }
   }
+  document.querySelector(".total").innerText = getCartTotal()
   saveCart()
 }
 
@@ -119,7 +125,6 @@ const renderCart = () => {
   for (let item of cart) {
     const li = createCartItem(item)
     cartContainer.append(li)
-    console.log(li)
   }
 }
 
@@ -129,6 +134,14 @@ const getCartAmount = () => {
     sum += item.amount
   }
   return sum
+}
+
+const getCartTotal = () => {
+  return cart.reduce((total, elem) => total += elem.amount * elem.price, 0)
+  // let sum = 0
+  // cart.map(elem => {
+  //   sum += elem.price * elem.amount
+  // });
 }
 
 const createProduct = (product) => {
@@ -157,14 +170,13 @@ const renderProductList = () => {
     productsContainer.append(productElement)
   }
   const numItems = document.querySelector(".num-items")
-  numItems.classList.add("active")
   numItems.innerText = getCartAmount()
 }
 
 const renderNumItems = (product) => {
   const cartContainer = document.querySelector(".cart")
   const numItems = document.querySelector(".num-items")
-  numItems.classList.add("active")
+  document.querySelector(".total").innerText = getCartTotal()
   numItems.innerText = getCartAmount()
   let inCart = null
   cartContainer.innerHTML = ""
@@ -368,6 +380,7 @@ const main = () => {
   mapper()
   renderArticles()
   cartView()
+  console.log(cart)
 }
 main()
 

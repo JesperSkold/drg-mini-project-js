@@ -143,9 +143,11 @@ footer ul li {
 }
 
 .cart span {
+  text-align: center;
+  display: inline-block;
+  width: 1.2rem;
   color: black;
   background-color: white;
-  padding: 0.2rem .5rem;
 }
 .cart-view {
   position: fixed;
@@ -169,9 +171,6 @@ footer ul li {
 .total {
   text-align: center;
 }
-.controls button{
-  padding: 0.2rem .5rem;
-}
 
 .cart li p{
   text-align: center;
@@ -182,8 +181,12 @@ footer ul li {
 
 }
 /* amount doesnt increase with button presses */
-.numItems, .num-items.active::after{
+.num-items::after{
   content: " items in cart";
+}
+
+.total::before {
+content: "Total: ";
 }
 
 .close-view {
