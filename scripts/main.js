@@ -25,8 +25,12 @@ const setupInitialState = () => {
     { name: "Exceptional Lootbug", img: "images/LootBug.png", price: 1337 }
   ]
   loadCart()
+  renderTotalSum()
 }
 
+const renderTotalSum = () => {
+  document.querySelector(".total").innerText = getCartTotal()
+}
 
 const increase = (li, item) => {
   let inCart = null
@@ -45,6 +49,7 @@ const increase = (li, item) => {
   console.log(item)
   console.log(cart)
   saveCart()
+  renderTotalSum()
 }
 
 const decrease = (li, item) => {
@@ -68,6 +73,7 @@ const decrease = (li, item) => {
   console.log(item)
   console.log(cart)
   saveCart()
+  renderTotalSum()
 }
 
 const createCartItem = (item) => {
@@ -170,6 +176,7 @@ const addToCart = (product) => {
 
   saveCart()
   renderNumItems(product)
+  renderTotalSum()
 }
 
 const cartView = () => {
@@ -281,6 +288,5 @@ const main = () => {
   mapper()
   renderArticles()
   cartView()
-  getCartTotal()
 }
 main()
