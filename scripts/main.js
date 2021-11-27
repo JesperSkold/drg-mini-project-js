@@ -43,7 +43,7 @@ const increase = (li, item) => {
   if (inCart) {
     inCart.amount++
   }
-  document.querySelector(".num-items").innerText = `${inCart.amount}`
+  document.querySelector(".num-items").innerText = `${getCartAmount()}`
   li.querySelector("span").innerText = `${inCart.amount}`
  
   console.log(item)
@@ -63,7 +63,7 @@ const decrease = (li, item) => {
   if (inCart) {
     inCart.amount--
   }
-  document.querySelector(".num-items").innerText = `${inCart.amount}`
+  document.querySelector(".num-items").innerText = `${getCartAmount()}`
   if (inCart.amount <= 0) {
     cart = cart.filter(i => i.name != inCart.name)
     li.remove()
@@ -145,14 +145,12 @@ const renderProductList = () => {
     productsContainer.append(productElement)
   }
   const numItems = document.querySelector(".num-items")
-  numItems.classList.add("active")
   numItems.innerText = getCartAmount()
 }
 
 const renderNumItems = (product) => {
   const cartContainer = document.querySelector(".cart")
   const numItems = document.querySelector(".num-items")
-  numItems.classList.add("active")
   numItems.innerText = getCartAmount()
   let inCart = null
   cartContainer.innerHTML = ""
