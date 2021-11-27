@@ -189,6 +189,10 @@ footer ul li {
 content: "Total: ";
 }
 
+.total::after {
+  content: " €"
+}
+
 .close-view {
   display: inline-flex;
   margin: 5% 0 0 90%;

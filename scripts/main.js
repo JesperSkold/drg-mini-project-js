@@ -128,7 +128,7 @@ const createProduct = (product) => {
   <img src=${product.img} alt="" srcset="">
   </div>
   <p class="name">${product.name}</p>
-  <p class="price">${product.price}:-</p>
+  <p class="price">${product.price} €</p>
   <button class="product-card__button">ADD TO CART</button>
   `
   const addToCartBtn = productArticle.querySelector(".product-card__button")
@@ -206,7 +206,6 @@ const mapper = () => {
     `)
 
   })
-  checkPos()
 }
 
 const checkPos = () => {
@@ -284,6 +283,7 @@ const main = () => {
   setupInitialState()
   renderProductList()
   mapper()
+  checkPos()
   renderArticles()
   cartView()
 }
