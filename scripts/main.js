@@ -199,12 +199,126 @@ const mapper = () => {
   document.querySelector(".map map").addEventListener("click", (e) => {
     mapInfo.classList.add("map-info-box")
     mapInfo.innerHTML = ""
-    mapInfo.insertAdjacentHTML("afterbegin", `
-    <h1>${e.target.title}</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius ab doloremque, hic similique mollitia voluptas.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius ab doloremque, hic similique mollitia voluptas.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius ab doloremque, hic similique mollitia voluptas.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius ab doloremque, hic similique mollitia voluptas.
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius ab doloremque, hic similique mollitia voluptas.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius ab doloremque, hic similique mollitia voluptas.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius ab doloremque, hic similique mollitia voluptas.Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius ab doloremque, hic similique mollitia voluptas.</p>
-    `)
+    if (e.target.title === "Crystalline Caverns") {
+      mapInfo.insertAdjacentHTML("afterbegin", `
+      <h1>${e.target.title}</h1>
+      <p>Crystalline Caverns is one of the biomes of Hoxxes IV. As the name suggests, this biome consists of caverns filled with many large (although worthless) crystals. There are many big, open chambers, connected by tunnels. The crystals produce natural light, allowing more visibility for navigation. The rock making up the caves is sturdy, taking three hits for it to give way.</p>
+      <div class="crafting-mats">
+      <p>Jadiz and Bismor can be found here.</p>
+      <img src="images/Jadiz_icon.png">
+      <img src="images/Bismor_icon.png">
+      </div>
+      `)
+    }
 
+    if (e.target.title === "Glacial Strata") {
+      mapInfo.insertAdjacentHTML("afterbegin", `
+      <h1>${e.target.title}</h1>
+      <p>Glacial Strata is one of the more extreme environments on Hoxxes, featuring sub zero temperatures and oppressive blizzards. Dwarves working in this region will need to manage their temperature to avoid becoming frozen solid. Certain types of hostile fauna have adapted to the cold, and will attack any intruders with freezing substances.</p>
+      <div class="crafting-mats">
+      <p>Magnite and Umanite can be found here.</p>
+      <img src="images/Magnite_icon.png">
+      <img src="images/Umanite_icon.png">
+      </div>
+      `)
+    }
+
+    if (e.target.title === "Dense Biozone") {
+      mapInfo.insertAdjacentHTML("afterbegin", `
+      <h1>${e.target.title}</h1>
+      <p>Dense Biozone is a vast subterranean system of pitch black caverns, littered by plant life that is mostly dangerous or hostile. The cave coral formations can occasionally help in traversing the caverns for hidden riches.</p>
+      <div class="crafting-mats">
+      <p>Bismor and Umanite can be found here.</p>
+      <img src="images/Bismor_icon.png">
+      <img src="images/Umanite_icon.png">
+      </div>
+      `)
+    }
+
+    if (e.target.title === "Salt Pits") {
+      mapInfo.insertAdjacentHTML("afterbegin", `
+      <h1>${e.target.title}</h1>
+      <p>The Salt Pits are densely populated with giant red salt crystals jutting out of the walls at irregular angles, and fragile platforms of white salt can occasionally be found on the walls. Stalactites delicately hang from the ceiling that can easily crush smaller creatures should they be disturbed.
+      Note: The "Glyphid omelettes" in the biome description of the Salt Pits are theorized to be the eggs collected as the primary objective in Egg Hunt missions.</p>
+      <div class="crafting-mats">
+      <p>Enor Pearls and Bismor can be found here.</p>
+      <img src="images/Enor_pearl_icon.png">
+      <img src="images/Bismor_icon.png">
+      </div>
+      `)
+    }
+
+    if (e.target.title === "Hollow Bough") {
+      mapInfo.insertAdjacentHTML("afterbegin", `
+      <h1>${e.target.title}</h1>
+      <p>Hollow Bough resembles the interior of a dead subterranean tree, greatly infested by hazardous vines that offer no form of leisure for any mission. The area is largely devoid of plant life due to this invasive species, yet a unique form of wasps has somehow made their home.</p>
+      <div class="crafting-mats">
+      <p>Jadiz and Bismor can be found here.</p>
+      <img src="images/Jadiz_icon.png">
+      <img src="images/Bismor_icon.png">
+      </div>
+      `)
+    }
+
+    if (e.target.title === "Fungus Bogs") {
+      mapInfo.insertAdjacentHTML("afterbegin", `
+      <h1>${e.target.title}</h1>
+      <p>Fungus Bogs is overrun with vegetation: patches of dense grass and vines, legions of giant mushrooms, pools of thick goo, and clusters of Poisonous fungus spores that will release deadly vapors when approached.</p>
+      <div class="crafting-mats">
+      <p>Croppa and Jadiz can be found here.</p>
+      <img src="images/Jadiz_icon.png">
+      <img src="images/Croppa_icon.png">
+      </div>
+      `)
+    }
+
+    if (e.target.title === "Radioactive Exclusion Zone") {
+      mapInfo.insertAdjacentHTML("afterbegin", `
+      <h1>${e.target.title}</h1>
+      <p>Radioactive Exclusion Zone contains vast deposits of volatile uranium that glow green in the darkness, damaging anything in their proximity. Certain enemy types have evolved to withstand the onslaught of radiation, notably mutated Cave Vines that lurk in the ceiling. Fleshy tumorous growths can be found latched to the walls, emitting bioluminescent light, and more rarely, some tunnels can be scattered with harmless Wall Eyes which watch the dwarves as they pass through the region.</p>
+      <div class="crafting-mats">
+      <p>Enor Pearls and Umanite can be found here.</p>
+      <img src="images/Enor_pearl_icon.png">
+      <img src="images/Umanite_icon.png">
+      </div>
+      `)
+    }
+
+    if (e.target.title === "Azure Weald") {
+      mapInfo.insertAdjacentHTML("afterbegin", `
+      <h1>${e.target.title}</h1>
+      <p>Azure Weald consists of caverns filled with pink and blue luminescent plants. It features big, open chambers, connected by tunnels filled with glowing flora, producing a soft light. The material making up the caves is durable, taking two hits to give way.</p>
+      <div class="crafting-mats">
+      <p>Croppa and Umanite can be found here.</p>
+      <img src="images/Croppa_icon.png">
+      <img src="images/Umanite_icon.png">
+      </div>
+      `)
+    }
+
+    if (e.target.title === "Magma Core") {
+      mapInfo.insertAdjacentHTML("afterbegin", `
+      <h1>${e.target.title}</h1>
+      <p>Magma Core is home to explosive plants, explosive maggots, lava geysers, and earthquakes. Miners should be especially careful when operating in this area, as explosions will expose dangerous hot rock beneath the ground.</p>
+      <div class="crafting-mats">
+      <p>Magnite and Croppa can be found here.</p>
+      <img src="images/Magnite_icon.png">
+      <img src="images/Croppa_icon.png">
+      </div>
+      `)
+    }
+
+    if (e.target.title === "Sandblasted Corridors") {
+      mapInfo.insertAdjacentHTML("afterbegin", `
+      <h1>${e.target.title}</h1>
+      <p>The rock in Sandblasted Corridors appears to be sandstone, easily giving way to tunneling—though caution is advised when digging downwards. The caverns in Sandblasted Corridors can be hundreds of meters in length and height, but are occasionally engulfed by thick sandstorms.</p>
+      <div class="crafting-mats">
+      <p>Magnite and Enor Pearls can be found here.</p>
+      <img src="images/Magnite_icon.png">
+      <img src="images/Enor_Pearl_Icon.png">
+      </div>
+      `)
+    }
   })
 }
 
