@@ -190,15 +190,15 @@ content: "Total: ";
 }
 
 .close-view {
-  display: flex;
-  justify-content: flex-end;
+  display: inline-flex;
+  margin: 5% 0 0 90%;
   cursor: pointer;
   color: white;
 }
 
 .open-view {
-  display: flex;
-  justify-content: flex-end;
+  display: inline-flex;
+  margin: 5% 0 0 90%;
   cursor: pointer;
   color: white;
 }
