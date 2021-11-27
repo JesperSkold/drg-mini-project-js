@@ -1,21 +1,13 @@
 let cart;
-let totalSum;
-let productList;
+let productList
 
 const saveCart = () => {
   const cartString = JSON.stringify(cart)
   localStorage.setItem("cart", cartString)
-  localStorage.setItem("total", totalSum)
 }
 
 const loadCart = () => {
-  const savedTotalSum = localStorage.getItem("total")
   const savedCart = localStorage.getItem("cart")
-  if (savedTotalSum) {
-    totalSum = savedTotalSum
-  }else{
-    totalSum = 0
-  }
   if (savedCart) {
     cart = JSON.parse(savedCart)
   } else {
@@ -37,9 +29,6 @@ const setupInitialState = () => {
 
 
 const increase = (li, item) => {
-  document.querySelector(".num-items").innerText++
-  item.amount++
-  li.querySelector("span").innerText = `${item.amount}`
   let inCart = null
   for (let needle of cart) {
     if (item.name == needle.name) {
@@ -50,56 +39,39 @@ const increase = (li, item) => {
   if (inCart) {
     inCart.amount++
   }
-  document.querySelector(".total").innerText = getCartTotal()
+  document.querySelector(".num-items").innerText = `${inCart.amount}`
+  li.querySelector("span").innerText = `${inCart.amount}`
+ 
+  console.log(item)
+  console.log(cart)
   saveCart()
-  // newFunc(li, item)---------
 }
 
-// const newFunc = (li, item) => {-------------
-//   const addToCartBtn = productArticle.querySelector(".product-card__button")
-//   addToCartBtn.addEventListener("click", () => {
-//     document.querySelector(".num-items").innerText++
-//     item.amount++
-//     li.querySelector("p").innerText = `${item.amount}x ${item.name}`
-//     let inCart = null
-//     for (let needle of cart) {
-//       if (item.name == needle.name) {
-//         inCart = needle;
-//         break;
-//       }
-//     }
-//     if (inCart) {
-//       inCart.amount++
-//     }
-//   })
-// }
-
 const decrease = (li, item) => {
-  document.querySelector(".num-items").innerText--
-  item.amount--
-  if (item.amount <= 0) {
-    cart = cart.filter(i => i.name != item.name)
-    li.remove()
-  } else {
-    li.querySelector("span").innerText = `${item.amount}`
-    let inCart = null
-    for (let needle of cart) {
-      if (item.name == needle.name) {
-        inCart = needle;
-        break;
-      }
-    }
-    if (inCart) {
-      inCart.amount--
+  let inCart = null
+  for (let needle of cart) {
+    if (item.name == needle.name) {
+      inCart = needle;
+      break;
     }
   }
-  document.querySelector(".total").innerText = getCartTotal()
+  if (inCart) {
+    inCart.amount--
+  }
+  document.querySelector(".num-items").innerText = `${inCart.amount}`
+  if (inCart.amount <= 0) {
+    cart = cart.filter(i => i.name != inCart.name)
+    li.remove()
+  } else {
+    li.querySelector("span").innerText = `${inCart.amount}`
+  }
+  console.log(item)
+  console.log(cart)
   saveCart()
 }
 
 const createCartItem = (item) => {
   const li = document.createElement("li")
-  console.log(item)
   li.innerHTML = `
   <p>${item.name}</p>
   <div class="controls">
@@ -113,10 +85,6 @@ const createCartItem = (item) => {
   
   li.querySelector(".decrease")
   .addEventListener("click", () => decrease(li, item))
-  // console.error(li)
-
-  // document.querySelector(".product-card__button").addEventListener("click", () => increase(li, item))
-  
   return li
 }
 
@@ -142,6 +110,7 @@ const getCartTotal = () => {
   // cart.map(elem => {
   //   sum += elem.price * elem.amount
   // });
+
 }
 
 const createProduct = (product) => {
@@ -170,34 +139,22 @@ const renderProductList = () => {
     productsContainer.append(productElement)
   }
   const numItems = document.querySelector(".num-items")
+  numItems.classList.add("active")
   numItems.innerText = getCartAmount()
 }
 
 const renderNumItems = (product) => {
   const cartContainer = document.querySelector(".cart")
   const numItems = document.querySelector(".num-items")
-  document.querySelector(".total").innerText = getCartTotal()
+  numItems.classList.add("active")
   numItems.innerText = getCartAmount()
   let inCart = null
   cartContainer.innerHTML = ""
   renderCart()
-  // for (let needle of cart) {
-  //   if (product.name == needle.name) {
-  //     inCart = needle;
-  //     const li = createCartItem(needle)
-  //     // li.querySelector("p").innerText = `${needle.amount}x ${needle.name}`
-  //     // cartContainer.append(li)
-  //     console.error(li)
-  //     console.error(needle.name)
-  //     break;
-  //   }
-  // }
 }
 
 const addToCart = (product) => {
-  // let inCart = cart.find(item => item.name == product.name)
   let inCart = null
-  console.log(product)
   for (let needle of cart) {
     if (product.name == needle.name) {
       inCart = needle;
@@ -205,11 +162,6 @@ const addToCart = (product) => {
     }
   }
   if (inCart) {
-  //   for (let item of cart) {
-  //     const li = createCartItem(item)
-  // console.log(li)
-  // li.querySelector("p").innerText = `${product.amount}x ${product.name}`
-  //   }
     inCart.amount++
   } else {
     const orderItem = { ...product, amount: 1 }
@@ -236,56 +188,6 @@ const cartView = () => {
     openView.style.display = "none"
   })
 }
-
-// const cartHandler = () => {
-//   const buttons = document.querySelectorAll(".product-card__button")
-//   const cartView = document.querySelector(".cart-view")
-//   const closeView = document.querySelector(".close-view")
-//   const openView = document.querySelector(".open-view")
-//   cartView.style.display = "none"
-//   openView.style.display = "none"
-//   // const cartItems = []
-//   // localStorage.getItem("cachedItems")
-//   for (const button of buttons) {
-//     button.addEventListener("click", (e) => {
-//       const cartElements = document.querySelectorAll(".cartItems")
-//       for (const elem of cartElements) {
-//         elem.style.display = "block"
-//       }
-//       openView.style.display = "none"
-//         closeView.style.display  ="block"
-//       if (cartItems.includes(e.target.value)) {
-//         //inkrementera och plussa på items i cart nav
-//         document.querySelector(".counter").innerText++
-//         cartView.style.display = "block"
-//       }else{
-//         cartView.style.display = "block"
-//         cartItems.push(e.target.value)
-//         localStorage.setItem("cachedItems", cartItems)
-//         document.querySelector(".cart-view").insertAdjacentHTML("beforeend", `
-//         <li class="cartItems">${e.target.value} <button class="increment">-</button><span class="counter">  1  </span><button class="decrement">+</button></li>
-//         `)
-//         console.log(localStorage)
-//       }
-//     })
-//   }
-//   closeView.addEventListener("click", () => {
-//     const cartElements = document.querySelectorAll(".cartItems")
-//     for (const elem of cartElements) {
-//       elem.style.display = "none"
-//     }
-//     closeView.style.display = "none"
-//     openView.style.display = "block"
-//   })
-//   openView.addEventListener("click", () => {
-//     const cartElements = document.querySelectorAll(".cartItems")
-//     for (const elem of cartElements) {
-//       elem.style.display = "block"
-//     }
-//     openView.style.display = "none"
-//     closeView.style.display = "block"
-//   })
-// }
 
 const mapper = () => {
   const mapInfo = document.querySelector(".map-info")
@@ -372,7 +274,6 @@ const renderArticles = async () => {
 
 
 const main = () => {
-  // cartHandler()
   loadCart()
   renderCart()
   setupInitialState()
@@ -380,10 +281,6 @@ const main = () => {
   mapper()
   renderArticles()
   cartView()
-  console.log(cart)
+  getCartTotal()
 }
 main()
-
-/*
-add map section link in nav svgs
-*/
